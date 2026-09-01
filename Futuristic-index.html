@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GravityLife — The Cosmic Journey</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Share+Tech+Mono&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #f5f0e8;
+    --dim: rgba(245,240,232,0.55);
+    --faint: rgba(245,240,232,0.18);
+    --mono: 'Share Tech Mono', monospace;
+    --serif: 'Cormorant Garamond', serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-snap-type: y mandatory; overflow-y: scroll; }
+
+  body {
+    background: #000;
+    color: var(--white);
+    font-family: var(--serif);
+    cursor: crosshair;
+  }
+
+  /* ─── SECTION BASE ─────────────────────────────── */
+  section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ─── PAGE 1 — COSMOS ───────────────────────────── */
+  #cosmos {
+    background:
+      radial-gradient(ellipse 60% 50% at 72% 38%, #1a0a3d 0%, transparent 70%),
+      radial-gradient(ellipse 80% 80% at 20% 80%, #0d1f3c 0%, transparent 60%),
+      #020008;
+  }
+
+  .stars-layer {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 45% 60%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 55% 10%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 55%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 15% 70%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 62%, rgba(200,210,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 92%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 93% 33%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 50% 50%, rgba(255,240,200,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 42% 28%, rgba(255,255,255,0.7) 0%, transparent 100%);
+    animation: twinkle 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+
+  /* Nebula glow */
+  .nebula {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 65%;
+    height: 80%;
+    background:
+      radial-gradient(ellipse at 60% 40%, rgba(100,50,180,0.35) 0%, transparent 50%),
+      radial-gradient(ellipse at 30% 70%, rgba(30,100,200,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(200,80,120,0.15) 0%, transparent 40%);
+    filter: blur(40px);
+    animation: nebulaDrift 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes nebulaDrift {
+    from { transform: translateX(0) translateY(0) scale(1); }
+    to { transform: translateX(-20px) translateY(15px) scale(1.05); }
+  }
+
+  /* Planet */
+  .planet {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 35%, #5a3fa0 0%, #2a1560 40%, #0d0520 100%);
+    box-shadow:
+      -30px -20px 60px rgba(100,60,200,0.5),
+      inset -50px -30px 80px rgba(0,0,0,0.8),
+      0 0 80px rgba(80,40,160,0.3);
+    animation: planetRotate 40s linear infinite;
+  }
+
+  .planet::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1px solid rgba(150,100,255,0.15);
+    box-shadow:
+      0 0 40px rgba(150,100,255,0.1),
+      inset 0 0 40px rgba(150,100,255,0.05);
+  }
+
+  /* Ring */
+  .planet-ring {
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%) rotateX(75deg);
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    border: 18px solid transparent;
+    border-top-color: rgba(180,140,255,0.25);
+    border-bottom-color: rgba(100,70,200,0.15);
+    box-shadow:
+      0 0 30px rgba(150,100,255,0.1),
+      inset 0 0 20px rgba(150,100,255,0.05);
+    animation: ringRotate 60s linear infinite;
+  }
+
+  @keyframes planetRotate {
+    from { box-shadow: -30px -20px 60px rgba(100,60,200,0.5), inset -50px -30px 80px rgba(0,0,0,0.8), 0 0 80px rgba(80,40,160,0.3); }
+    50% { box-shadow: -20px -30px 60px rgba(100,60,200,0.4), inset -40px -40px 80px rgba(0,0,0,0.8), 0 0 100px rgba(80,40,160,0.4); }
+    to { box-shadow: -30px -20px 60px rgba(100,60,200,0.5), inset -50px -30px 80px rgba(0,0,0,0.8), 0 0 80px rgba(80,40,160,0.3); }
+  }
+
+  @keyframes ringRotate {
+    from { transform: translateY(-50%) rotateX(75deg) rotateZ(0deg); }
+    to { transform: translateY(-50%) rotateX(75deg) rotateZ(360deg); }
+  }
+
+  /* Small distant planet */
+  .planet-small {
+    position: absolute;
+    left: 38%;
+    top: 18%;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #c87941 0%, #7a3a10 60%, #2a1000 100%);
+    box-shadow: -5px -3px 15px rgba(200,120,60,0.4), inset -8px -5px 15px rgba(0,0,0,0.7);
+  }
+
+  /* ─── PAGE 2 — DESERT ───────────────────────────── */
+  #desert {
+    background: #0a0704;
+  }
+
+  .desert-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom,
+        #0a0704 0%,
+        #1a0e06 20%,
+        #2d1a08 40%,
+        #3d2010 55%,
+        #5a3018 65%,
+        #6b3a1c 72%,
+        #7a4020 78%,
+        #4a2810 85%,
+        #1a0e08 92%,
+        #0a0704 100%
+      );
+  }
+
+  /* Sun / horizon glow */
+  .desert-sun {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 200px;
+    background: radial-gradient(ellipse at 50% 80%, rgba(255,140,40,0.6) 0%, rgba(255,80,0,0.3) 30%, transparent 70%);
+    filter: blur(20px);
+  }
+
+  /* Horizon line */
+  .horizon {
+    position: absolute;
+    top: 62%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent 0%, rgba(255,140,40,0.6) 30%, rgba(255,100,20,0.8) 50%, rgba(255,140,40,0.6) 70%, transparent 100%);
+  }
+
+  /* Dune silhouettes */
+  .dunes {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+  }
+
+  .dunes svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Heat shimmer */
+  .shimmer {
+    position: absolute;
+    top: 55%;
+    left: 0;
+    right: 0;
+    height: 15%;
+    background: linear-gradient(to bottom, rgba(255,120,30,0.05) 0%, transparent 100%);
+    animation: shimmerAnim 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes shimmerAnim {
+    from { opacity: 0.3; transform: scaleX(1); }
+    to { opacity: 0.7; transform: scaleX(1.01); }
+  }
+
+  /* Sky texture */
+  .desert-sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65%;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(255,80,0,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(255,60,0,0.06) 0%, transparent 50%),
+      linear-gradient(to bottom, rgba(5,3,2,0) 0%, rgba(30,15,5,0.3) 100%);
+  }
+
+  /* Stars in desert sky */
+  .desert-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 58%;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,240,220,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,240,220,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 50% 35%, rgba(255,240,220,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 50%, rgba(255,240,220,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 25%, rgba(255,240,220,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 40%, rgba(255,240,220,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 60%, rgba(255,240,220,0.2) 0%, transparent 100%);
+  }
+
+  /* ─── PAGE 3 — CITY ─────────────────────────────── */
+  #city {
+    background: #030508;
+  }
+
+  .city-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 100%, rgba(0,100,180,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(255,120,0,0.04) 0%, transparent 40%),
+      linear-gradient(to bottom, #030508 0%, #060a10 40%, #0a0f18 70%, #050810 100%);
+  }
+
+  /* Skyline */
+  .skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65%;
+  }
+
+  .skyline svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Smog / atmosphere glow */
+  .smog {
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: linear-gradient(to top,
+      rgba(255,100,20,0.06) 0%,
+      rgba(200,80,10,0.04) 40%,
+      transparent 100%);
+    filter: blur(8px);
+    animation: smogPulse 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes smogPulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+  }
+
+  /* Rain effect */
+  .rain {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .rain-drop {
+    position: absolute;
+    top: -10px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(150,200,255,0.25));
+    animation: rainFall linear infinite;
+  }
+
+  @keyframes rainFall {
+    from { transform: translateY(-10px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.5; }
+    to { transform: translateY(105vh); opacity: 0; }
+  }
+
+  /* ─── TEXT LAYOUT ────────────────────────────────── */
+
+  .content {
+    position: relative;
+    z-index: 10;
+    padding: 0 8vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Page 1 layout */
+  #cosmos .content {
+    padding-left: 8vw;
+    padding-right: 48%;
+    justify-content: flex-end;
+    padding-bottom: 12vh;
+  }
+
+  /* Page 2 layout */
+  #desert .content {
+    padding-left: 52%;
+    padding-right: 6vw;
+    justify-content: flex-start;
+    padding-top: 12vh;
+  }
+
+  /* Page 3 layout */
+  #city .content {
+    padding-left: 6vw;
+    padding-right: 55%;
+    justify-content: flex-start;
+    padding-top: 10vh;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--faint);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+  }
+
+  .quote-block {
+    margin-bottom: 2.5rem;
+  }
+
+  .quote-mark {
+    font-family: var(--display);
+    font-size: 5rem;
+    line-height: 0.5;
+    color: var(--faint);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    line-height: 1.5;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+
+  .quote-author {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--dim);
+    margin-top: 1rem;
+    text-transform: uppercase;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--faint);
+    margin: 2.5rem 0;
+  }
+
+  .label {
+    font-family: var(--display);
+    font-size: clamp(5rem, 9vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(245,240,232,0.12);
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  #cosmos .label {
+    bottom: 6vh;
+    right: 44%;
+    font-size: clamp(4rem, 7vw, 7.5rem);
+    -webkit-text-stroke: 1px rgba(180,150,255,0.15);
+  }
+
+  #desert .label {
+    top: 58%;
+    left: 5vw;
+    -webkit-text-stroke: 1px rgba(200,130,60,0.12);
+  }
+
+  #city .label {
+    bottom: 8vh;
+    right: 4vw;
+    -webkit-text-stroke: 1px rgba(100,160,220,0.12);
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 3rem;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .scroll-hint span {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.2);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.3), transparent);
+    animation: scrollBlink 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollBlink {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(0.6); }
+  }
+
+  /* Progress dots */
+  .nav-dots {
+    position: fixed;
+    left: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(245,240,232,0.25);
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .dot.active {
+    background: rgba(245,240,232,0.8);
+    box-shadow: 0 0 8px rgba(245,240,232,0.4);
+    transform: scale(1.5);
+  }
+
+  /* Fade-in animations */
+  .content > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  section.visible .content > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section.visible .content > *:nth-child(1) { transition-delay: 0.1s; }
+  section.visible .content > *:nth-child(2) { transition-delay: 0.3s; }
+  section.visible .content > *:nth-child(3) { transition-delay: 0.5s; }
+  section.visible .content > *:nth-child(4) { transition-delay: 0.6s; }
+  section.visible .content > *:nth-child(5) { transition-delay: 0.75s; }
+
+  /* Horizontal accent line */
+  .accent-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(to right, rgba(245,240,232,0.15), transparent);
+  }
+
+  #cosmos .accent-line {
+    width: 35%;
+    top: 22%;
+    left: 0;
+  }
+
+  #desert .accent-line {
+    width: 28%;
+    bottom: 30%;
+    right: 0;
+    background: linear-gradient(to left, rgba(200,130,60,0.2), transparent);
+  }
+
+  #city .accent-line {
+    width: 30%;
+    top: 30%;
+    left: 0;
+    background: linear-gradient(to right, rgba(80,160,220,0.2), transparent);
+  }
+
+  /* Top bar */
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+
+  .brand {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: rgba(245,240,232,0.25);
+    text-transform: uppercase;
+  }
+
+  .brand strong {
+    color: rgba(245,240,232,0.5);
+    font-weight: normal;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.18);
+    text-align: right;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="brand"><strong>GRAVITY</strong>&nbsp;&nbsp;LIFE</div>
+  <div class="tag">ORIGIN &nbsp;·&nbsp; ENDURANCE &nbsp;·&nbsp; ASCENT</div>
+</div>
+
+<!-- Nav dots -->
+<nav class="nav-dots" aria-label="Page navigation">
+  <div class="dot active" onclick="scrollTo(0,0)" title="Cosmos"></div>
+  <div class="dot" onclick="document.getElementById('desert').scrollIntoView({behavior:'smooth'})" title="Desert"></div>
+  <div class="dot" onclick="document.getElementById('city').scrollIntoView({behavior:'smooth'})" title="City"></div>
+</nav>
+
+<!-- Scroll hint -->
+<div class="scroll-hint">
+  <div class="scroll-line"></div>
+  <span>Scroll</span>
+</div>
+
+<!-- ═══════════════ PAGE 1 — COSMOS ═══════════════ -->
+<section id="cosmos">
+  <div class="stars-layer"></div>
+  <div class="nebula"></div>
+  <div class="planet-ring"></div>
+  <div class="planet"></div>
+  <div class="planet-small"></div>
+  <div class="accent-line"></div>
+
+  <div class="content">
+    <div class="section-num">01 &nbsp;/&nbsp; Cosmos</div>
+
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">The universe is under no obligation<br>to make sense to you.</p>
+      <p class="quote-author">— Neil deGrasse Tyson</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">We are a way for the cosmos<br>to know itself.</p>
+      <p class="quote-author">— Carl Sagan &nbsp;·&nbsp; Cosmos, 1980</p>
+    </div>
+  </div>
+
+  <div class="label">COSMOS</div>
+</section>
+
+<!-- ═══════════════ PAGE 2 — DESERT ═══════════════ -->
+<section id="desert">
+  <div class="desert-bg"></div>
+  <div class="desert-sky"></div>
+  <div class="desert-stars"></div>
+  <div class="desert-sun"></div>
+  <div class="horizon"></div>
+  <div class="shimmer"></div>
+  <div class="dunes">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,280 Q120,220 280,260 Q400,295 520,240 Q640,185 760,230 Q880,270 1000,215 Q1120,160 1280,210 Q1360,232 1440,200 L1440,400 L0,400 Z" fill="#0f0804" opacity="0.95"/>
+      <path d="M0,320 Q100,290 220,310 Q360,332 480,295 Q600,258 720,300 Q840,338 960,285 Q1080,235 1200,275 Q1320,310 1440,280 L1440,400 L0,400 Z" fill="#0a0603" opacity="0.98"/>
+      <path d="M0,360 Q150,340 300,355 Q450,368 600,345 Q750,322 900,348 Q1050,372 1200,350 Q1320,332 1440,345 L1440,400 L0,400 Z" fill="#060402" opacity="1"/>
+      <!-- Ripple lines -->
+      <path d="M60,305 Q180,298 300,303" stroke="rgba(180,100,40,0.15)" stroke-width="0.8" fill="none"/>
+      <path d="M200,330 Q350,320 500,328" stroke="rgba(180,100,40,0.1)" stroke-width="0.8" fill="none"/>
+      <path d="M800,295 Q950,285 1100,292" stroke="rgba(180,100,40,0.12)" stroke-width="0.8" fill="none"/>
+    </svg>
+  </div>
+  <div class="accent-line"></div>
+
+  <div class="content">
+    <div class="section-num">02 &nbsp;/&nbsp; Endurance</div>
+
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">In the desert, the only<br>moisture is time itself.</p>
+      <p class="quote-author">— Anonymous</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Life persists in the most<br>unforgiving of places —<br>that is its supreme argument.</p>
+      <p class="quote-author">— Loren Eiseley &nbsp;·&nbsp; The Immense Journey</p>
+    </div>
+  </div>
+
+  <div class="label">DESERT</div>
+</section>
+
+<!-- ═══════════════ PAGE 3 — CITY ═══════════════ -->
+<section id="city">
+  <div class="city-bg"></div>
+
+  <!-- Rain -->
+  <div class="rain" id="rain"></div>
+
+  <div class="skyline">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bldgGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0d1520" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#040810" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,140,30,0.12)"/>
+          <stop offset="100%" stop-color="rgba(255,80,0,0)" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Glow at base -->
+      <rect x="0" y="400" width="1440" height="200" fill="url(#glowGrad)"/>
+
+      <!-- Far background buildings -->
+      <rect x="0" y="300" width="60" height="300" fill="#080c14" opacity="0.6"/>
+      <rect x="55" y="260" width="45" height="340" fill="#090d16" opacity="0.55"/>
+      <rect x="95" y="320" width="70" height="280" fill="#080c14" opacity="0.6"/>
+      <rect x="160" y="240" width="50" height="360" fill="#0a0f18" opacity="0.6"/>
+      <rect x="205" y="280" width="90" height="320" fill="#090d16" opacity="0.55"/>
+      <rect x="290" y="200" width="40" height="400" fill="#0b1020" opacity="0.65"/>
+      <rect x="325" y="300" width="80" height="300" fill="#080c14" opacity="0.6"/>
+      <rect x="400" y="220" width="55" height="380" fill="#0c1122" opacity="0.65"/>
+
+      <!-- Mid buildings -->
+      <rect x="0" y="360" width="80" height="240" fill="url(#bldgGrad)"/>
+      <rect x="75" y="310" width="55" height="290" fill="url(#bldgGrad)"/>
+      <rect x="125" y="270" width="100" height="330" fill="url(#bldgGrad)"/>
+      <!-- Antenna on tall building -->
+      <line x1="175" y1="270" x2="175" y2="230" stroke="#1a2840" stroke-width="1.5"/>
+      <circle cx="175" cy="230" r="2" fill="rgba(255,50,50,0.5)" filter="url(#glow)"/>
+
+      <rect x="220" y="330" width="70" height="270" fill="url(#bldgGrad)"/>
+      <rect x="285" y="260" width="130" height="340" fill="url(#bldgGrad)"/>
+      <!-- Windows -->
+      <rect x="295" y="275" width="8" height="10" fill="rgba(255,200,80,0.25)" rx="1"/>
+      <rect x="310" y="275" width="8" height="10" fill="rgba(255,200,80,0.15)" rx="1"/>
+      <rect x="325" y="275" width="8" height="10" fill="rgba(255,200,80,0.3)" rx="1"/>
+      <rect x="295" y="295" width="8" height="10" fill="rgba(255,200,80,0.1)" rx="1"/>
+      <rect x="325" y="295" width="8" height="10" fill="rgba(255,200,80,0.2)" rx="1"/>
+      <rect x="295" y="315" width="8" height="10" fill="rgba(255,200,80,0.3)" rx="1"/>
+      <rect x="310" y="315" width="8" height="10" fill="rgba(255,200,80,0.25)" rx="1"/>
+      <rect x="340" y="280" width="8" height="10" fill="rgba(200,230,255,0.2)" rx="1"/>
+      <rect x="340" y="300" width="8" height="10" fill="rgba(200,230,255,0.15)" rx="1"/>
+      <rect x="340" y="320" width="8" height="10" fill="rgba(200,230,255,0.2)" rx="1"/>
+
+      <rect x="410" y="290" width="85" height="310" fill="url(#bldgGrad)"/>
+      <!-- Windows on 410 building -->
+      <rect x="420" y="305" width="7" height="9" fill="rgba(255,200,80,0.2)" rx="1"/>
+      <rect x="432" y="305" width="7" height="9" fill="rgba(255,200,80,0.3)" rx="1"/>
+      <rect x="444" y="305" width="7" height="9" fill="rgba(255,200,80,0.15)" rx="1"/>
+      <rect x="420" y="322" width="7" height="9" fill="rgba(255,200,80,0.25)" rx="1"/>
+      <rect x="444" y="322" width="7" height="9" fill="rgba(255,200,80,0.2)" rx="1"/>
+
+      <!-- Tall center-right skyscraper -->
+      <rect x="490" y="180" width="70" height="420" fill="#0c1220"/>
+      <!-- Tapered top -->
+      <polygon points="490,180 525,140 560,180" fill="#0a1018"/>
+      <line x1="525" y1="140" x2="525" y2="100" stroke="#1a2840" stroke-width="1.5"/>
+      <circle cx="525" cy="100" r="2.5" fill="rgba(255,80,80,0.7)" filter="url(#glow)"/>
+      <!-- Windows grid -->
+      <rect x="500" y="195" width="9" height="12" fill="rgba(200,230,255,0.2)" rx="1"/>
+      <rect x="515" y="195" width="9" height="12" fill="rgba(200,230,255,0.3)" rx="1"/>
+      <rect x="530" y="195" width="9" height="12" fill="rgba(200,230,255,0.15)" rx="1"/>
+      <rect x="545" y="195" width="9" height="12" fill="rgba(200,230,255,0.25)" rx="1"/>
+      <rect x="500" y="215" width="9" height="12" fill="rgba(200,230,255,0.1)" rx="1"/>
+      <rect x="530" y="215" width="9" height="12" fill="rgba(200,230,255,0.2)" rx="1"/>
+      <rect x="545" y="215" width="9" height="12" fill="rgba(200,230,255,0.3)" rx="1"/>
+      <rect x="500" y="235" width="9" height="12" fill="rgba(200,230,255,0.25)" rx="1"/>
+      <rect x="515" y="235" width="9" height="12" fill="rgba(200,230,255,0.15)" rx="1"/>
+      <rect x="530" y="235" width="9" height="12" fill="rgba(200,230,255,0.3)" rx="1"/>
+
+      <rect x="555" y="320" width="65" height="280" fill="url(#bldgGrad)"/>
+      <rect x="615" y="280" width="90" height="320" fill="url(#bldgGrad)"/>
+      <rect x="700" y="350" width="75" height="250" fill="url(#bldgGrad)"/>
+      <rect x="770" y="300" width="110" height="300" fill="url(#bldgGrad)"/>
+      <!-- Windows on 770 -->
+      <rect x="780" y="315" width="8" height="10" fill="rgba(255,200,80,0.2)" rx="1"/>
+      <rect x="793" y="315" width="8" height="10" fill="rgba(255,200,80,0.35)" rx="1"/>
+      <rect x="806" y="315" width="8" height="10" fill="rgba(255,200,80,0.1)" rx="1"/>
+      <rect x="819" y="315" width="8" height="10" fill="rgba(255,200,80,0.25)" rx="1"/>
+      <rect x="780" y="333" width="8" height="10" fill="rgba(255,200,80,0.15)" rx="1"/>
+      <rect x="806" y="333" width="8" height="10" fill="rgba(255,200,80,0.3)" rx="1"/>
+      <rect x="780" y="351" width="8" height="10" fill="rgba(255,200,80,0.2)" rx="1"/>
+      <rect x="793" y="351" width="8" height="10" fill="rgba(255,200,80,0.1)" rx="1"/>
+      <rect x="819" y="351" width="8" height="10" fill="rgba(255,200,80,0.25)" rx="1"/>
+
+      <rect x="875" y="330" width="60" height="270" fill="url(#bldgGrad)"/>
+      <rect x="930" y="270" width="80" height="330" fill="url(#bldgGrad)"/>
+      <rect x="1005" y="310" width="70" height="290" fill="url(#bldgGrad)"/>
+      <rect x="1070" y="350" width="50" height="250" fill="url(#bldgGrad)"/>
+      <rect x="1115" y="280" width="100" height="320" fill="url(#bldgGrad)"/>
+      <!-- Windows on 1115 -->
+      <rect x="1125" y="295" width="8" height="10" fill="rgba(255,200,80,0.3)" rx="1"/>
+      <rect x="1140" y="295" width="8" height="10" fill="rgba(255,200,80,0.15)" rx="1"/>
+      <rect x="1155" y="295" width="8" height="10" fill="rgba(255,200,80,0.25)" rx="1"/>
+      <rect x="1170" y="295" width="8" height="10" fill="rgba(255,200,80,0.1)" rx="1"/>
+      <rect x="1125" y="313" width="8" height="10" fill="rgba(255,200,80,0.2)" rx="1"/>
+      <rect x="1155" y="313" width="8" height="10" fill="rgba(255,200,80,0.3)" rx="1"/>
+      <rect x="1170" y="313" width="8" height="10" fill="rgba(255,200,80,0.2)" rx="1"/>
+
+      <rect x="1210" y="360" width="85" height="240" fill="url(#bldgGrad)"/>
+      <rect x="1290" y="290" width="70" height="310" fill="url(#bldgGrad)"/>
+      <rect x="1355" y="330" width="85" height="270" fill="url(#bldgGrad)"/>
+
+      <!-- Ground / reflection -->
+      <rect x="0" y="580" width="1440" height="20" fill="#030608" opacity="0.9"/>
+      <!-- Street reflections -->
+      <ellipse cx="525" cy="590" rx="40" ry="3" fill="rgba(200,180,255,0.05)"/>
+      <ellipse cx="175" cy="590" rx="20" ry="2" fill="rgba(255,80,80,0.05)"/>
+    </svg>
+  </div>
+
+  <div class="smog"></div>
+  <div class="accent-line"></div>
+
+  <div class="content">
+    <div class="section-num">03 &nbsp;/&nbsp; Ascent</div>
+
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">We shape our buildings;<br>thereafter they shape us.</p>
+      <p class="quote-author">— Winston Churchill, 1943</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote-block">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Any sufficiently advanced technology<br>is indistinguishable from magic.</p>
+      <p class="quote-author">— Arthur C. Clarke &nbsp;·&nbsp; Profiles of the Future</p>
+    </div>
+  </div>
+
+  <div class="label">CITY</div>
+</section>
+
+<script>
+  // ── Rain generation ──
+  const rainEl = document.getElementById('rain');
+  for (let i = 0; i < 60; i++) {
+    const drop = document.createElement('div');
+    drop.className = 'rain-drop';
+    drop.style.left = Math.random() * 100 + '%';
+    drop.style.height = (Math.random() * 60 + 40) + 'px';
+    drop.style.animationDuration = (Math.random() * 1.5 + 0.8) + 's';
+    drop.style.animationDelay = (Math.random() * 3) + 's';
+    rainEl.appendChild(drop);
+  }
+
+  // ── Scroll observer for fade-in ──
+  const sections = document.querySelectorAll('section');
+  const dots = document.querySelectorAll('.dot');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        const idx = Array.from(sections).indexOf(entry.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(s => observer.observe(s));
+  sections[0].classList.add('visible');
+</script>
+</body>
+</html>
